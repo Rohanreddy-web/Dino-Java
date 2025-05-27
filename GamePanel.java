@@ -31,13 +31,13 @@ public class GamePanel extends JPanel implements Runnable {
     int groundY = screenHeight - tileSize * 2;
     int velocityY = 0;
     int gravity = 1;
-    int jumpStrength = -15;
+    int jumpStrength = -20;
     boolean isJumping = false;
     int cameraX = 0;
-    int obstacleWidth = tileSize - 15;
-    int obstacleHeight = tileSize - 15;
+    int obstacleWidth = tileSize - 20;
+    int obstacleHeight = tileSize - 20;
     int startX = 300;
-    int spacing = 200;
+    int spacing = 600;
     ArrayList<Obstacle> obstacles;
     boolean gameOver = false; // Track game over state
 
@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
         playerY = groundY - playerHeight;
 
         try {
-            playerImage = ImageIO.read(getClass().getResourceAsStream("/images/Dino.png"));
+            playerImage = ImageIO.read(getClass().getResourceAsStream("/images/DINOB.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
         obstacles = new ArrayList<>();
         for (int i = 0; i <= 1000; i++) {
             int xPos = startX + i * spacing;
-            obstacles.add(new Obstacle(xPos, groundY - obstacleHeight, obstacleWidth, obstacleHeight, Color.RED));
+            obstacles.add(new Obstacle(xPos, groundY - obstacleHeight, obstacleWidth, obstacleHeight, Color.WHITE));
         }
     }
 
@@ -153,6 +153,7 @@ public class GamePanel extends JPanel implements Runnable {
         for (Obstacle obstacle : obstacles) {
             g2.setColor(obstacle.color);
             g2.fillRect(obstacle.x - cameraX, obstacle.y, obstacle.width, obstacle.height);
+
         }
 
         // Draw game over message
